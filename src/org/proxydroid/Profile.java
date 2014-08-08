@@ -17,17 +17,16 @@
  */
 package org.proxydroid;
 
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.util.Vector;
-import java.util.regex.Pattern;
-
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.util.Vector;
+import java.util.regex.Pattern;
 
 /**
  * @author KsMaze
@@ -89,7 +88,7 @@ public class Profile implements Serializable {
 		try {
 			port = Integer.valueOf(portText);
 		} catch (Exception e) {
-			port = 3128;
+			port = 8888;
 		}
 	}
 
@@ -118,7 +117,7 @@ public class Profile implements Serializable {
 
 	public void init() {
 		host = "";
-		port = 3128;
+		port = 8888;
 		ssid = "";
 		user = "";
 		domain = "";
@@ -224,7 +223,7 @@ public class Profile implements Serializable {
 		bypassAddrs = jd.getString("bypassAddrs", "");
 		proxyedApps = jd.getString("Proxyed", "");
 
-		port = jd.getInt("port", 3128);
+		port = jd.getInt("port", 8888);
 
 		isAuth = jd.getBoolean("isAuth", false);
 		isNTLM = jd.getBoolean("isNTLM", false);

@@ -10,7 +10,7 @@ public class Proxy {
 
 	public String type = "http";
 	public String host = "";
-	public int port = 3128;
+	public int port = 8888;
 
 	public Proxy(String host, int port, String type) {
 		this.host = host;

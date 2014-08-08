@@ -137,7 +137,7 @@ public class RhinoPacScriptParser extends ScriptableObject implements
 	 ************************************************************************/
 	@Override
 	public String getClassName() {
-		return getClass().getSimpleName();
+		return null;
 	}
 
 	// ***************************************************************************

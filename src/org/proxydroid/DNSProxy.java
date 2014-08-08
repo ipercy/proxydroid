@@ -1,33 +1,25 @@
 package org.proxydroid;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.ConnectException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.URLEncoder;
-import java.net.UnknownHostException;
-import java.util.HashSet;
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import org.proxydroid.db.DNSResponse;
-import org.proxydroid.db.DatabaseHelper;
-import org.proxydroid.utils.Base64;
-
 import android.content.Context;
 import android.util.Log;
-
 import com.github.droidfu.http.BetterHttp;
 import com.github.droidfu.http.BetterHttpRequest;
 import com.github.droidfu.http.BetterHttpResponse;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
+import org.proxydroid.db.DNSResponse;
+import org.proxydroid.db.DatabaseHelper;
+import org.proxydroid.utils.Base64;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * DNS Proxy

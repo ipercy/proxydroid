@@ -40,12 +40,7 @@ package org.proxydroid;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
+import android.content.*;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.content.pm.PackageManager.NameNotFoundException;
@@ -58,13 +53,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.CheckBoxPreference;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
+import android.preference.*;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -78,24 +67,16 @@ import android.widget.Toast;
 import com.actionbarsherlock.app.SherlockPreferenceActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
-import com.flurry.android.FlurryAgent;
-import com.google.ads.AdRequest;
-import com.google.ads.AdSize;
-import com.google.ads.AdView;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.dao.Dao;
 import com.ksmaze.android.preference.ListPreferenceMultiSelect;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
 import org.proxydroid.db.DNSResponse;
 import org.proxydroid.db.DatabaseHelper;
 import org.proxydroid.utils.Constraints;
 import org.proxydroid.utils.Utils;
+
+import java.io.*;
+import java.util.List;
 
 public class ProxyDroid extends SherlockPreferenceActivity
     implements OnSharedPreferenceChangeListener {
@@ -140,7 +121,6 @@ public class ProxyDroid extends SherlockPreferenceActivity
   private CheckBoxPreference isBypassAppsCheck;
   private Preference proxyedApps;
   private Preference bypassAddrs;
-  private AdView adView;
   private BroadcastReceiver ssidReceiver = new BroadcastReceiver() {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -273,18 +253,6 @@ public class ProxyDroid extends SherlockPreferenceActivity
     ssidList.setEntryValues(ssidEntries);
   }
 
-  @Override
-  public void onStart() {
-    super.onStart();
-    FlurryAgent.onStartSession(this, "AV372I7R5YYD52NWPUPE");
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-    FlurryAgent.onEndSession(this);
-  }
-
   private LinearLayout getLayout(ViewParent parent) {
     if (parent instanceof LinearLayout) return (LinearLayout) parent;
     if (parent != null) {
@@ -301,18 +269,10 @@ public class ProxyDroid extends SherlockPreferenceActivity
     addPreferencesFromResource(R.xml.proxydroid_preference);
 
     // Create the adView
-    adView = new AdView(this, AdSize.SMART_BANNER, "a14db2c016cb9b6");
     // Lookup your LinearLayout assuming it’s been given
     // the attribute android:id="@+id/mainLayout"
     ViewParent parent = getListView().getParent();
     LinearLayout layout = getLayout(parent);
-    if (layout != null) {
-      // Add the adView to it
-      layout.addView(adView, 0);
-      // Initiate a generic request to load it with an ad
-      AdRequest aq = new AdRequest();
-      adView.loadAd(aq);
-    }
 
     hostText = (EditTextPreference) findPreference("host");
     portText = (EditTextPreference) findPreference("port");
@@ -404,8 +364,6 @@ public class ProxyDroid extends SherlockPreferenceActivity
   /** Called when the activity is closed. */
   @Override
   public void onDestroy() {
-
-    if (adView != null) adView.destroy();
 
     if (ssidReceiver != null) unregisterReceiver(ssidReceiver);
 

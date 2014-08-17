@@ -16,3 +16,4 @@ Modified by iPercy:
  * Remove Google AD,Flurry
  * Don't use Maven build(Use Intellij IDEA)
  * Change port 3128 to 8888(Fiddler)
+ * Replace original proxy.sh from release APK(Otherwise,it didn't work)

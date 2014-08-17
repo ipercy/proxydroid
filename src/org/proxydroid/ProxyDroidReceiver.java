@@ -50,8 +50,7 @@ public class ProxyDroidReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(context);
+		SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 		Profile mProfile = new Profile();
 		mProfile.getProfile(settings);
 
@@ -79,5 +78,4 @@ public class ProxyDroidReceiver extends BroadcastReceiver {
 			context.startService(it);
 		}
 	}
-
 }

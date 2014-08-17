@@ -66,7 +66,7 @@ public class ImageLoader {
 						break;
 				}
 			} catch (InterruptedException e) {
-				// allow thread to exit
+				e.printStackTrace();
 			}
 		}
 	}
@@ -86,7 +86,7 @@ public class ImageLoader {
 							++j;
 					}
 				} catch (java.lang.ArrayIndexOutOfBoundsException ignore) {
-					// Nothing
+					ignore.printStackTrace();
 				}
 			}
 		}
@@ -165,6 +165,7 @@ public class ImageLoader {
 			o2.inSampleSize = scale;
 			return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
 		} catch (FileNotFoundException e) {
+            e.printStackTrace();
 		}
 		return null;
 	}
@@ -217,5 +218,4 @@ public class ImageLoader {
 	public void stopThread() {
 		photoLoaderThread.interrupt();
 	}
-
 }

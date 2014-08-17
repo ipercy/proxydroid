@@ -50,5 +50,4 @@ public class FileArrayAdapter extends ArrayAdapter<Option> {
 		}
 		return v;
 	}
-
 }

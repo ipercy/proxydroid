@@ -345,8 +345,7 @@ public class BypassListActivity extends SherlockActivity implements
 				.setNegativeButton(R.string.alert_dialog_cancel,
 						new DialogInterface.OnClickListener() {
 							@Override
-							public void onClick(DialogInterface dialog,
-									int whichButton) {
+							public void onClick(DialogInterface dialog,int whichButton) {
 								/* User clicked cancel so do some stuff */
 							}
 						}).create();

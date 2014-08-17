@@ -41,7 +41,7 @@ public class Profile implements Serializable {
 	private String bypassAddrs;
 	private String user;
 	private String password;
-        private String certificate;
+    private String certificate;
 	private String proxyedApps;
 	private boolean isAutoConnect = false;
 	private boolean isAutoSetProxy = false;
@@ -69,7 +69,7 @@ public class Profile implements Serializable {
 		bypassAddrs = settings.getString("bypassAddrs", "");
 		proxyedApps = settings.getString("Proxyed", "");
 		domain = settings.getString("domain", "");
-                certificate = settings.getString("certificate", "");
+        certificate = settings.getString("certificate", "");
 
 		isAuth = settings.getBoolean("isAuth", false);
 		isNTLM = settings.getBoolean("isNTLM", false);
@@ -105,7 +105,7 @@ public class Profile implements Serializable {
 		ed.putBoolean("isNTLM", isNTLM);
 		ed.putString("domain", domain);
 		ed.putString("proxyType", proxyType);
-                ed.putString("certificate", certificate);
+        ed.putString("certificate", certificate);
 		ed.putBoolean("isAutoConnect", isAutoConnect);
 		ed.putBoolean("isAutoSetProxy", isAutoSetProxy);
 		ed.putBoolean("isBypassApps", isBypassApps);
@@ -122,7 +122,7 @@ public class Profile implements Serializable {
 		user = "";
 		domain = "";
 		password = "";
-                certificate = "";
+        certificate = "";
 		isAuth = false;
 		proxyType = "http";
 		isAutoConnect = false;
@@ -149,7 +149,7 @@ public class Profile implements Serializable {
 		obj.put("user", user);
 		obj.put("password", password);
 		obj.put("domain", domain);
-                obj.put("certificate", certificate);
+        obj.put("certificate", certificate);
 		obj.put("bypassAddrs", bypassAddrs);
 		obj.put("Proxyed", proxyedApps);
 
@@ -219,7 +219,7 @@ public class Profile implements Serializable {
 		user = jd.getString("user", "");
 		password = jd.getString("password", "");
 		domain = jd.getString("domain", "");
-                certificate = jd.getString("certificate", "");
+        certificate = jd.getString("certificate", "");
 		bypassAddrs = jd.getString("bypassAddrs", "");
 		proxyedApps = jd.getString("Proxyed", "");
 
@@ -286,14 +286,13 @@ public class Profile implements Serializable {
 		if (addrs.length == 0)
 			return "";
 
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		for (String addr : addrs) {
 			String ta = validateAddr(addr);
 			if (ta != null)
 				sb.append(ta + "|");
 		}
-		String ret = sb.substring(0, sb.length() - 1);
-		return ret;
+        return sb.substring(0, sb.length() - 1);
 	}
 
 	/**
@@ -544,7 +543,7 @@ public class Profile implements Serializable {
 	}
 
 	/**
-	 * @param isDNSProxy
+	 * @param isPAC
 	 *            the isDNSProxy to set
 	 */
 	public void setPAC(boolean isPAC) {

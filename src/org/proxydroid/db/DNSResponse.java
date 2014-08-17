@@ -87,12 +87,6 @@ public class DNSResponse {
 
 	@Override
 	public String toString() {
-		StringBuilder sb = new StringBuilder();
-		sb.append("request=").append(request);
-		sb.append(", ").append("timestamp=").append(timestamp);
-		sb.append(", ").append("reqTimes=").append(reqTimes);
-		sb.append(", ").append("dnsResponse=").append(dnsResponse);
-		return sb.toString();
+        return "request=" + request + ", " + "timestamp=" + timestamp + ", " + "reqTimes=" + reqTimes + ", " + "dnsResponse=" + dnsResponse;
 	}
-
 }

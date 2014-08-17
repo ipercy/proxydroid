@@ -28,26 +28,20 @@ public class FileChooser extends ListActivity {
 		try {
 			for (File ff : dirs) {
 				if (ff.isDirectory())
-					dir.add(new Option(ff.getName(),
-							getString(R.string.folder), ff.getAbsolutePath()));
+					dir.add(new Option(ff.getName(),getString(R.string.folder), ff.getAbsolutePath()));
 				else {
-					fls.add(new Option(ff.getName(),
-							getString(R.string.file_size) + ff.length(), ff
-									.getAbsolutePath()));
+					fls.add(new Option(ff.getName(),getString(R.string.file_size) + ff.length(), ff.getAbsolutePath()));
 				}
 			}
 		} catch (Exception e) {
-
+            e.printStackTrace();
 		}
 		Collections.sort(dir);
 		Collections.sort(fls);
 		dir.addAll(fls);
 		if (!f.getName().equalsIgnoreCase("sdcard"))
-			dir.add(0,
-					new Option("..", getString(R.string.parent_dir), f
-							.getParent()));
-		adapter = new FileArrayAdapter(FileChooser.this, R.layout.file_view,
-				dir);
+			dir.add(0,new Option("..", getString(R.string.parent_dir), f.getParent()));
+		adapter = new FileArrayAdapter(FileChooser.this, R.layout.file_view,dir);
 		this.setListAdapter(adapter);
 	}
 
@@ -61,17 +55,14 @@ public class FileChooser extends ListActivity {
 	private void onFileClick(Option o) {
 		File inputFile = new File(o.getPath());
 		if (inputFile.exists() && inputFile.length() < 32 * 1024) {
-			Toast.makeText(this, getString(R.string.file_toast) + o.getPath(),
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getString(R.string.file_toast) + o.getPath(),Toast.LENGTH_SHORT).show();
 			Intent i = new Intent();
 			i.putExtra(Constraints.FILE_PATH, o.getPath());
 			setResult(RESULT_OK, i);
 		} else {
-			Toast.makeText(this, getString(R.string.file_error) + o.getPath(),
-					Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, getString(R.string.file_error) + o.getPath(),Toast.LENGTH_SHORT).show();
 			setResult(RESULT_CANCELED);
 		}
-
 		finish();
 	}
 
@@ -79,8 +70,7 @@ public class FileChooser extends ListActivity {
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		Option o = adapter.getItem(position);
-		if (o.getData().equalsIgnoreCase(getString(R.string.folder))
-				|| o.getData().equalsIgnoreCase(getString(R.string.parent_dir))) {
+		if (o.getData().equalsIgnoreCase(getString(R.string.folder)) || o.getData().equalsIgnoreCase(getString(R.string.parent_dir))) {
 			currentDir = new File(o.getPath());
 			fill(currentDir);
 		} else {

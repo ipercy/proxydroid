@@ -107,25 +107,23 @@ public class ProxyDroidWidgetProvider extends AppWidgetProvider {
 				awm.updateAppWidget(awm.getAppWidgetIds(new ComponentName(
 						context, ProxyDroidWidgetProvider.class)), views);
 			} catch (Exception ignore) {
-				// Nothing
-			}
+				ignore.printStackTrace();
+        }
 
 			Log.d(TAG, "Proxy switch action");
 			// do some really cool stuff here
 			if (Utils.isWorking()) {
 				// Service is working, so stop it
 				try {
-					context.stopService(new Intent(context,
-							ProxyDroidService.class));
+					context.stopService(new Intent(context,ProxyDroidService.class));
 				} catch (Exception e) {
-					// Nothing
+					e.printStackTrace();
 				}
 
 			} else {
 
 				// Service is not working, then start it
-				SharedPreferences settings = PreferenceManager
-						.getDefaultSharedPreferences(context);
+				SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(context);
 
 				Profile mProfile = new Profile();
 				mProfile.getProfile(settings);
@@ -152,7 +150,6 @@ public class ProxyDroidWidgetProvider extends AppWidgetProvider {
 				context.startService(it);
 
 			}
-
 		}
 	}
 }

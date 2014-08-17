@@ -56,5 +56,4 @@ public class InnerSocketBuilder {
 	public boolean isConnected() {
 		return this.isConnected;
 	}
-
 }

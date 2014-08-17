@@ -59,8 +59,7 @@ public class AppManager extends SherlockActivity implements OnCheckedChangeListe
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case MSG_LOAD_START:
-				pd = ProgressDialog.show(AppManager.this, "",
-						getString(R.string.loading), true, true);
+				pd = ProgressDialog.show(AppManager.this, "",getString(R.string.loading), true, true);
 				break;
 			case MSG_LOAD_FINISH:
 
@@ -445,5 +444,4 @@ public class AppManager extends SherlockActivity implements OnCheckedChangeListe
 		saveAppSettings(this);
 
 	}
-
 }
